@@ -145,44 +145,44 @@
 }
 
 
--(id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed{
-    if ([dismissed isKindOfClass:[UINavigationController class]] && [[(UINavigationController*)dismissed  viewControllers].lastObject isKindOfClass:MHGalleryImageViewerViewController.class]) {
-        MHGalleryImageViewerViewController *imageViewer = [(UINavigationController*)dismissed  viewControllers].lastObject;
-        MHImageViewController *viewer = imageViewer.pageViewController.viewControllers.firstObject;
+// -(id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed{
+//     if ([dismissed isKindOfClass:[UINavigationController class]] && [[(UINavigationController*)dismissed  viewControllers].lastObject isKindOfClass:MHGalleryImageViewerViewController.class]) {
+//         MHGalleryImageViewerViewController *imageViewer = [(UINavigationController*)dismissed  viewControllers].lastObject;
+//         MHImageViewController *viewer = imageViewer.pageViewController.viewControllers.firstObject;
         
-        if (!imageViewer.dismissFromImageView && viewer.interactiveTransition.finishButtonAction) {
-            return nil;
-        }
+//         if (!imageViewer.dismissFromImageView && viewer.interactiveTransition.finishButtonAction) {
+//             return nil;
+//         }
         
-        if (viewer.interactiveTransition) {
-            MHTransitionDismissMHGallery *detail = viewer.interactiveTransition;
-            detail.transitionImageView = imageViewer.dismissFromImageView;
-            return detail;
-        }
+//         if (viewer.interactiveTransition) {
+//             MHTransitionDismissMHGallery *detail = viewer.interactiveTransition;
+//             detail.transitionImageView = imageViewer.dismissFromImageView;
+//             return detail;
+//         }
         
-        MHTransitionDismissMHGallery *detail = MHTransitionDismissMHGallery.new;
-        detail.transitionImageView = imageViewer.dismissFromImageView;
-        return detail;
-    }
-    return nil;
-}
+//         MHTransitionDismissMHGallery *detail = MHTransitionDismissMHGallery.new;
+//         detail.transitionImageView = imageViewer.dismissFromImageView;
+//         return detail;
+//     }
+//     return nil;
+// }
 
-- (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented
-                                                                  presentingController:(UIViewController *)presenting
-                                                                      sourceController:(UIViewController *)source {
-    UINavigationController *nav = (UINavigationController*)presented;
-    if ([nav isKindOfClass:[UINavigationController class]] && [nav.viewControllers.lastObject  isKindOfClass:MHGalleryImageViewerViewController.class]) {
-        MHGalleryImageViewerViewController *imageViewer = nav.viewControllers.lastObject;
-        if (imageViewer.interactivePresentationTranstion) {
-            MHTransitionPresentMHGallery *detail = imageViewer.interactivePresentationTranstion;
-            detail.presentingImageView = imageViewer.presentingFromImageView;
-            return detail;
-        }
-        MHTransitionPresentMHGallery *detail = MHTransitionPresentMHGallery.new;
-        detail.presentingImageView = imageViewer.presentingFromImageView;
-        return detail;
-    }
-    return nil;
-}
+// - (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented
+//                                                                   presentingController:(UIViewController *)presenting
+//                                                                       sourceController:(UIViewController *)source {
+//     UINavigationController *nav = (UINavigationController*)presented;
+//     if ([nav isKindOfClass:[UINavigationController class]] && [nav.viewControllers.lastObject  isKindOfClass:MHGalleryImageViewerViewController.class]) {
+//         MHGalleryImageViewerViewController *imageViewer = nav.viewControllers.lastObject;
+//         if (imageViewer.interactivePresentationTranstion) {
+//             MHTransitionPresentMHGallery *detail = imageViewer.interactivePresentationTranstion;
+//             detail.presentingImageView = imageViewer.presentingFromImageView;
+//             return detail;
+//         }
+//         MHTransitionPresentMHGallery *detail = MHTransitionPresentMHGallery.new;
+//         detail.presentingImageView = imageViewer.presentingFromImageView;
+//         return detail;
+//     }
+//     return nil;
+// }
 
 @end
